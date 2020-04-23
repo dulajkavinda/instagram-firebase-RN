@@ -4,9 +4,18 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import Home from "./screens/Home.js";
 import TabNavigator from "./navigations/TabNavigator";
 
-class App extends React.Component {
+import { initStore } from "./redux/store";
+import { Provider } from "react-redux";
+
+const store = initStore();
+
+class App extends Component {
   render() {
-    return <TabNavigator />;
+    return (
+      <Provider store={store}>
+        <TabNavigator />
+      </Provider>
+    );
   }
 }
 
