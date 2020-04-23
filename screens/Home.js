@@ -2,6 +2,8 @@ import React from "react";
 import { Text, View, Button } from "react-native";
 import styles from "../styles.js";
 
+import { connect } from "react-redux";
+
 class Home extends React.Component {
   constructor() {
     super();
@@ -43,4 +45,12 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+const mapStateToProps = (state) => ({
+  state,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  dispatch,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
