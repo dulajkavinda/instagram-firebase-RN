@@ -1,7 +1,12 @@
 import React, { Component } from "react";
+import { Text, View } from "react-native";
 
 export default class Search extends Component {
   render() {
-    return <div> Search </div>;
+    return (
+      <View>
+        <Text> Search </Text>
+      </View>
+    );
   }
 }
