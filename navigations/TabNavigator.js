@@ -29,7 +29,9 @@ export default function TabNavigator() {
             } else if (route.name === "Activity") {
               iconName = focused ? "ios-grid" : "ios-grid";
             } else if (route.name === "Upload") {
-              iconName = focused ? "ios-cloud-upload" : "ios-cloud-upload";
+              iconName = focused
+                ? "md-add-circle-outline"
+                : "md-add-circle-outline";
             }
 
             // You can return any component that you like here!
@@ -49,8 +51,8 @@ export default function TabNavigator() {
       >
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="Search" component={Search} />
-        <Tab.Screen name="Activity" component={Activity} />
         <Tab.Screen name="Upload" component={Upload} />
+        <Tab.Screen name="Activity" component={Activity} />
         <Tab.Screen name="Profile" component={Profile} />
       </Tab.Navigator>
     </NavigationContainer>
