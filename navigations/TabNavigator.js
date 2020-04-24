@@ -1,9 +1,13 @@
 import * as React from "react";
+
+// react-navigations වලට ඕනේ වෙන බම්​බු
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
+// රෙද්දෙ icons ටි​ක
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-// screens ටික import කරගන්න.
+// screens ටික import කරගත්​තා.
 import Home from "../screens/Home";
 import Profile from "../screens/Home";
 import Search from "../screens/Search";
@@ -29,10 +33,12 @@ export default function TabNavigator() {
             } else if (route.name === "Activity") {
               iconName = focused ? "ios-grid" : "ios-grid";
             } else if (route.name === "Upload") {
-              iconName = focused ? "ios-cloud-upload" : "ios-cloud-upload";
+              iconName = focused
+                ? "md-add-circle-outline"
+                : "md-add-circle-outline";
             }
 
-            // You can return any component that you like here!
+            // මෙතන අපිට ඕනේ කැමති component එකක් return කරන්න පුලුවන්..
             return <Ionicons name={iconName} size={size} color={color} />;
           },
         })}
@@ -49,8 +55,8 @@ export default function TabNavigator() {
       >
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="Search" component={Search} />
-        <Tab.Screen name="Activity" component={Activity} />
         <Tab.Screen name="Upload" component={Upload} />
+        <Tab.Screen name="Activity" component={Activity} />
         <Tab.Screen name="Profile" component={Profile} />
       </Tab.Navigator>
     </NavigationContainer>

@@ -2,6 +2,10 @@ import React from "react";
 import { Text, View, Button } from "react-native";
 import styles from "../styles.js";
 
+import { TEST_ACTION } from "../redux/actions/index.actions";
+
+import { connect } from "react-redux";
+
 class Home extends React.Component {
   constructor() {
     super();
@@ -25,7 +29,7 @@ class Home extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>How many apps are we going to build? {this.state.count}</Text>
+        <Text>This is the counter? {this.props.counter}</Text>
         <Button
           title="Add"
           onPress={() => {
@@ -43,4 +47,14 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+  return {
+    counter: state.counter,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  dispatch,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
