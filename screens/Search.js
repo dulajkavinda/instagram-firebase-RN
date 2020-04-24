@@ -5,7 +5,7 @@ export default class Search extends React.Component {
   render() {
     return (
       <View>
-        <Text> Search </Text>
+        <Text> Search Screen </Text>
       </View>
     );
   }
