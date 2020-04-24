@@ -29,7 +29,7 @@ class Home extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>How many apps are we going to build?? {this.props.counter}</Text>
+        <Text>This is the counter? {this.props.counter}</Text>
         <Button
           title="Add"
           onPress={() => {
