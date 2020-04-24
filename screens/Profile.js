@@ -5,7 +5,7 @@ export default class Profile extends React.Component {
   render() {
     return (
       <View>
-        <Text> Profile </Text>
+        <Text> Profile Screen </Text>
       </View>
     );
   }
