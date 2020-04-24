@@ -1,46 +1,31 @@
 import React from "react";
 import { Text, View, Button } from "react-native";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { add, subtract } from "../redux/actions";
 import styles from "../styles.js";
 
 class Home extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      count: 10,
-    };
-  }
-
-  add = () => {
-    this.setState({
-      count: this.state.count + 1,
-    });
-  };
-
-  substract = () => {
-    this.setState({
-      count: this.state.count - 1,
-    });
-  };
-
   render() {
     return (
       <View style={styles.container}>
-        <Text>This is the counter? {this.state.count}</Text>
-        <Button
-          title="Add"
-          onPress={() => {
-            this.add();
-          }}
-        />
-        <Button
-          title="Substract"
-          onPress={() => {
-            this.substract();
-          }}
-        />
+        <Text> Home {this.props.counter}</Text>
+        <Text>How many apps are we going to build? {this.props.counter}</Text>
+        <Button title="Add" onPress={() => this.props.add()} />
+        <Button title="Subtract" onPress={() => this.props.subtract()} />
       </View>
     );
   }
 }
 
-export default Home;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ add, subtract }, dispatch);
+};
+
+const mapStateToProps = (state) => {
+  return {
+    counter: state,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
