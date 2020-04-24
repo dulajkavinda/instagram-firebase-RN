@@ -5,7 +5,7 @@ export default class Upload extends React.Component {
   render() {
     return (
       <View>
-        <Text> Upload </Text>
+        <Text> Upload Screen </Text>
       </View>
     );
   }
