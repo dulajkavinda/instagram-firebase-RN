@@ -9,7 +9,7 @@ import { Provider } from "react-redux";
 
 const store = initStore();
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
