@@ -9,7 +9,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 // screens ටික import කරගත්​තා.
 import Home from "../screens/Home";
-import Profile from "../screens/Home";
+import Profile from "../screens/Profile";
 import Search from "../screens/Search";
 import Activity from "../screens/Activity";
 import Upload from "../screens/Upload";
