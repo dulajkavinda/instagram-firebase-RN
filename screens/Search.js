@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import { Text, View } from "react-native";
 
-export default class Search extends Component {
+export default class Search extends React.Component {
   render() {
     return (
       <View>

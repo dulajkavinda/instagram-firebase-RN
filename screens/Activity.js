@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import { Text, View } from "react-native";
 
-export default class Activity extends Component {
+export default class Activity extends React.Component {
   render() {
     return (
       <View>
