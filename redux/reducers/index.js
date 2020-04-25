@@ -1,8 +1,10 @@
+import { ADD, SUBTRACT } from "../actions/actionTypes";
+
 export default (state = 115, action) => {
   switch (action.type) {
-    case "ADD":
+    case ADD:
       return state + 1;
-    case "SUBTRACT":
+    case SUBTRACT:
       return state - 1;
     default:
       return state;
