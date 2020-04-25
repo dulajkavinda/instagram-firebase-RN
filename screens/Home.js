@@ -9,7 +9,6 @@ class Home extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text> Home {this.props.counter}</Text>
         <Text>How many apps are we going to build? {this.props.counter}</Text>
         <Button title="Add" onPress={() => this.props.add()} />
         <Button title="Subtract" onPress={() => this.props.subtract()} />
