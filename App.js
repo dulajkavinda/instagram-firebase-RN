@@ -1,13 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
-
-import Home from "./screens/Home.js";
-import TabNavigator from "./navigations/TabNavigator";
-
-import { initStore } from "./redux/store";
+import reducer from "./redux/reducers";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
+import thunkMiddleware from "redux-thunk";
+const middleware = applyMiddleware(thunkMiddleware);
+const store = createStore(reducer, middleware);
 
-const store = initStore();
+import TabNavigator from "./navigations/TabNavigator";
 
 class App extends React.Component {
   render() {
@@ -18,14 +17,5 @@ class App extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
 export default App;
