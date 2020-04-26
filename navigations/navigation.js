@@ -13,7 +13,7 @@ export default () => {
   React.useEffect(() => {
     setTimeout(() => {
       setIsLoading(!isLoading);
-      setUser({});
+      //  setUser({});
     }, 0);
   }, []);
 

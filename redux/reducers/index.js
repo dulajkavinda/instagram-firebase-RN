@@ -1,6 +1,12 @@
-import { ADD, SUBTRACT } from "../actions/actionTypes";
+import {
+  ADD,
+  SUBTRACT,
+  UPDATE_PASSWORD,
+  UPDATE_EMAIL,
+} from "../actions/actionTypes";
+import { combineReducers } from "redux";
 
-export default (state = 115, action) => {
+const counter = (state = 115, action) => {
   switch (action.type) {
     case ADD:
       return state + 1;
@@ -10,3 +16,19 @@ export default (state = 115, action) => {
       return state;
   }
 };
+
+const user = (state = 115, action) => {
+  switch (action.type) {
+    case UPDATE_PASSWORD:
+      return { ...state, password: action.payload };
+    case UPDATE_EMAIL:
+      return { ...state, email: action.payload };
+    default:
+      return state;
+  }
+};
+
+export default combineReducers({
+  counter,
+  user,
+});
