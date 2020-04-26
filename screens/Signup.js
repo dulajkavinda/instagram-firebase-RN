@@ -1,7 +1,12 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Button, TextInput } from "react-native";
+import styles from "../styles";
 
-export default class Signup extends Component {
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { updateEmail, updatePassword } from "../redux/actions/user";
+
+class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -9,9 +14,35 @@ export default class Signup extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text> Signup </Text>
+        <TextInput
+          value={this.props.user}
+          placeholder="usrname"
+          onChangeText={(input) => {
+            this.props.updateEmail(input);
+          }}
+        ></TextInput>
+        <TextInput
+          value={this.props.user}
+          placeholder="password"
+          onChangeText={(input) => {
+            this.props.updatePassword(input);
+          }}
+        ></TextInput>
       </View>
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ updateEmail, updatePassword }, dispatch);
+};
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
