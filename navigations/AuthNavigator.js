@@ -9,7 +9,7 @@ import Signup from "../screens/Signup";
 const AuthStack = createStackNavigator();
 
 const AuthStackScreen = () => (
-  <AuthStack.Navigator>
+  <AuthStack.Navigator mode="card">
     <AuthStack.Screen name="Signin" component={Signin} />
     <AuthStack.Screen name="Signup" component={Signup} />
   </AuthStack.Navigator>
