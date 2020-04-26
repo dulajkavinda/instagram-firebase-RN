@@ -6,13 +6,13 @@ import thunkMiddleware from "redux-thunk";
 const middleware = applyMiddleware(thunkMiddleware);
 const store = createStore(reducer, middleware);
 
-import TabNavigator from "./navigations/TabNavigator";
+import Navigation from "./navigations/navigation";
 
 class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <TabNavigator />
+        <Navigation />
       </Provider>
     );
   }
