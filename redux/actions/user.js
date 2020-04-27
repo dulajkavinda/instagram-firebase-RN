@@ -7,6 +7,8 @@ import {
   SIGNIN,
 } from "./actionTypes";
 
+import { AsyncStorage } from "react-native";
+
 import firebase from "firebase";
 
 export const updateEmail = (email) => {
@@ -34,7 +36,11 @@ export const signin = () => {
         .auth()
         .signInWithEmailAndPassword(email, password);
       alert(response);
-      dispatch({ type: SIGNIN, payload: response.user });
+      //dispatch({ type: SIGNIN, payload: response.user });
+      AsyncStorage.setItem("userToken", response.user.uid, () => {
+        console.warn("Done!");
+      });
+      dispatch({ type: SIGNIN, token: response.user.uid });
     } catch (error) {
       alert(error);
     }

@@ -31,8 +31,18 @@ const user = (state = {}, action) => {
       return { ...state, bio: action.payload };
     case UPDATE_USERNAME:
       return { ...state, username: action.payload };
+    case "RESTORE_TOKEN":
+      return {
+        ...state,
+        userToken: action.token,
+        isLoading: false,
+      };
     case SIGNIN:
-      return action.payload;
+      return {
+        ...state,
+        isSignout: false,
+        userToken: action.token,
+      };
     case SIGNUP:
       return action.payload;
     default:
