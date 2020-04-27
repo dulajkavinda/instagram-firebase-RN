@@ -7,6 +7,7 @@ import {
   UPDATE_USERNAME,
   SIGNIN,
   SIGNUP,
+  USER_STATUS,
 } from "../actions/actionTypes";
 import { combineReducers } from "redux";
 
@@ -31,20 +32,12 @@ const user = (state = {}, action) => {
       return { ...state, bio: action.payload };
     case UPDATE_USERNAME:
       return { ...state, username: action.payload };
-    case "RESTORE_TOKEN":
-      return {
-        ...state,
-        userToken: action.token,
-        isLoading: false,
-      };
     case SIGNIN:
-      return {
-        ...state,
-        isSignout: false,
-        userToken: action.token,
-      };
+      return action.payload;
     case SIGNUP:
       return action.payload;
+    case USER_STATUS:
+      return { ...state, user_status: action.payload };
     default:
       return state;
   }

@@ -2,39 +2,34 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { useSelector, useDispatch } from "react-redux";
 
-import { AsyncStorage } from "react-native";
-
 import Loading from "../screens/Loading";
 
 import TabNavigator from "./TabNavigator";
 import AuthNavigator from "./AuthNavigator";
+import firebase from "firebase";
+
+import { USER_STATUS } from "../redux/actions/actionTypes";
 
 export default () => {
-  const token = useSelector((state) => state.user.userToken);
-  const [isLoading, setIsLoading] = React.useState(true);
+  const isUserLogged = useSelector((state) => state.user.user_status);
   const dispatch = useDispatch();
 
-  let userToken;
+  let isLoading = false;
 
-  React.useEffect(() => {
-    const bootstrapAsync = async () => {
-      setIsLoading(!isLoading);
-
-      try {
-        userToken = await AsyncStorage.getItem("userToken");
-        console.log("Hey: " + userToken);
-      } catch (e) {}
-      dispatch({ type: "RESTORE_TOKEN", token: userToken });
-    };
-
-    bootstrapAsync();
-  }, []);
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      console.log(user.uid);
+      dispatch({ type: USER_STATUS, payload: user.uid });
+    } else {
+      console.log("not logged");
+    }
+  });
 
   return (
     <NavigationContainer>
       {isLoading ? (
         <Loading />
-      ) : token != null ? (
+      ) : isUserLogged ? (
         <TabNavigator />
       ) : (
         <AuthNavigator />
