@@ -3,6 +3,8 @@ import {
   UPDATE_PASSWORD,
   UPDATE_USERNAME,
   UPDATE_BIO,
+  SIGNUP,
+  SIGNIN,
 } from "./actionTypes";
 
 import firebase from "firebase";
@@ -32,6 +34,7 @@ export const signin = () => {
         .auth()
         .signInWithEmailAndPassword(email, password);
       alert(response);
+      dispatch({ type: SIGNIN, payload: response.user });
     } catch (error) {
       alert(error);
     }
