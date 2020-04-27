@@ -37,7 +37,7 @@ const user = (state = {}, action) => {
     case SIGNUP:
       return action.payload;
     case USER_STATUS:
-      return { ...state, user_status: action.payload };
+      return { ...state, user_status: action.payload, is_loading: false };
     default:
       return state;
   }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { View, Text } from "react-native";
+import styles from "../styles.js";
 
 export default class Loading extends Component {
   constructor(props) {
@@ -9,7 +10,7 @@ export default class Loading extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text> Loading </Text>
       </View>
     );

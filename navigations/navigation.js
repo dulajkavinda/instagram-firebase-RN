@@ -11,10 +11,9 @@ import firebase from "firebase";
 import { USER_STATUS } from "../redux/actions/actionTypes";
 
 export default () => {
+  let isLoading = false;
   const isUserLogged = useSelector((state) => state.user.user_status);
   const dispatch = useDispatch();
-
-  let isLoading = false;
 
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
@@ -27,13 +26,7 @@ export default () => {
 
   return (
     <NavigationContainer>
-      {isLoading ? (
-        <Loading />
-      ) : isUserLogged ? (
-        <TabNavigator />
-      ) : (
-        <AuthNavigator />
-      )}
+      {isUserLogged ? <TabNavigator /> : <AuthNavigator />}
     </NavigationContainer>
   );
 };
