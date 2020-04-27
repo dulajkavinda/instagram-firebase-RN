@@ -8,9 +8,14 @@ import {
   updatePassword,
   updateBio,
   updateUsername,
+  signup,
 } from "../redux/actions/user";
 
 class Signup extends React.Component {
+  signup = () => {
+    this.props.signup(this.props.user.email, this.props.user.password);
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -38,10 +43,7 @@ class Signup extends React.Component {
           onChangeText={(input) => this.props.updateBio(input)}
           placeholder="Bio"
         />
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => this.props.navigation.navigate("Signup")}
-        >
+        <TouchableOpacity style={styles.button} onPress={() => this.signup()}>
           <Text>Signup</Text>
         </TouchableOpacity>
       </View>
@@ -51,7 +53,7 @@ class Signup extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
-    { updateEmail, updatePassword, updateUsername, updateBio },
+    { updateEmail, updatePassword, updateUsername, updateBio, signup },
     dispatch
   );
 };

@@ -2,10 +2,15 @@ import React from "react";
 import { Text, View, TextInput, TouchableOpacity } from "react-native";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { updateEmail, updatePassword } from "../redux/actions/user.js";
+import { updateEmail, updatePassword, signin } from "../redux/actions/user.js";
+
 import styles from "../styles.js";
 
 class Signin extends React.Component {
+  signin = () => {
+    this.props.signin(this.props.user.email, this.props.user.password);
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -22,7 +27,7 @@ class Signin extends React.Component {
           placeholder="Password"
         />
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => this.signin()}>
           <Text>Signin</Text>
         </TouchableOpacity>
 
@@ -38,7 +43,7 @@ class Signin extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ updateEmail, updatePassword }, dispatch);
+  return bindActionCreators({ updateEmail, updatePassword, signin }, dispatch);
 };
 
 const mapStateToProps = (state) => {

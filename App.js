@@ -6,6 +6,7 @@ import thunkMiddleware from "redux-thunk";
 import logger from "redux-logger";
 const middleware = applyMiddleware(thunkMiddleware, logger);
 const store = createStore(reducer, middleware);
+import firebaseConfig from "./config/firabase";
 
 import Navigation from "./navigations/navigation";
 

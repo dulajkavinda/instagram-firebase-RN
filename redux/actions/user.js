@@ -5,6 +5,8 @@ import {
   UPDATE_BIO,
 } from "./actionTypes";
 
+import firebase from "firebase";
+
 export const updateEmail = (email) => {
   return { type: UPDATE_EMAIL, payload: email };
 };
@@ -19,4 +21,34 @@ export const updateUsername = (username) => {
 
 export const updateBio = (bio) => {
   return { type: UPDATE_BIO, payload: bio };
+};
+
+export const signin = () => {
+  return async (dispatch, getState) => {
+    const { email, password } = getState().user;
+
+    try {
+      const response = await firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password);
+      alert(response);
+    } catch (error) {
+      alert(error);
+    }
+  };
+};
+
+export const signup = () => {
+  return async (dispatch, getState) => {
+    const { email, password } = getState().user;
+
+    try {
+      const response = await firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password);
+      alert(response);
+    } catch (error) {
+      alert(error);
+    }
+  };
 };
