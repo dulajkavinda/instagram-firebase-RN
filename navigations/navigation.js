@@ -26,7 +26,7 @@ export default () => {
 
   return (
     <NavigationContainer>
-      {isUserLogged ? <TabNavigator /> : <AuthNavigator />}
+      {!isUserLogged ? <AuthNavigator /> : <TabNavigator />}
     </NavigationContainer>
   );
 };

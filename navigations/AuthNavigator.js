@@ -10,7 +10,7 @@ import Loading from "../screens/Loading";
 const AuthStack = createStackNavigator();
 
 const AuthStackScreen = () => (
-  <AuthStack.Navigator initialRouteName="Loading">
+  <AuthStack.Navigator>
     <AuthStack.Screen name="Signin" component={Signin} />
     <AuthStack.Screen name="Signup" component={Signup} />
     <AuthStack.Screen
