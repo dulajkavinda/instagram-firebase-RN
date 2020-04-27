@@ -3,8 +3,10 @@ import reducer from "./redux/reducers";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunkMiddleware from "redux-thunk";
-const middleware = applyMiddleware(thunkMiddleware);
+import logger from "redux-logger";
+const middleware = applyMiddleware(thunkMiddleware, logger);
 const store = createStore(reducer, middleware);
+import firebaseConfig from "./config/firabase";
 
 import Navigation from "./navigations/navigation";
 
