@@ -5,6 +5,7 @@ import {
   UPDATE_BIO,
   SIGNUP,
   SIGNIN,
+  USER_STATUS,
 } from "./actionTypes";
 
 import { AsyncStorage } from "react-native";
@@ -27,6 +28,10 @@ export const updateBio = (bio) => {
   return { type: UPDATE_BIO, payload: bio };
 };
 
+export const getUserStatus = (user_status) => {
+  return { type: USER_STATUS, payload: user_status };
+};
+
 export const signin = () => {
   return async (dispatch, getState) => {
     const { email, password } = getState().user;
@@ -36,11 +41,7 @@ export const signin = () => {
         .auth()
         .signInWithEmailAndPassword(email, password);
       alert(response);
-      //dispatch({ type: SIGNIN, payload: response.user });
-      AsyncStorage.setItem("userToken", response.user.uid, () => {
-        console.warn("Done!");
-      });
-      dispatch({ type: SIGNIN, token: response.user.uid });
+      dispatch({ type: SIGNIN, payload: response.user });
     } catch (error) {
       alert(error);
     }
