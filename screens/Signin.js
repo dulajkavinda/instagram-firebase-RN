@@ -22,6 +22,10 @@ class Signin extends React.Component {
           placeholder="Password"
         />
 
+        <TouchableOpacity style={styles.button}>
+          <Text>Signin</Text>
+        </TouchableOpacity>
+
         <TouchableOpacity
           style={styles.button}
           onPress={() => this.props.navigation.navigate("Signup")}

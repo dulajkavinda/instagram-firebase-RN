@@ -1,11 +1,22 @@
-import { UPDATE_EMAIL, UPDATE_PASSWORD } from "./actionTypes";
+import {
+  UPDATE_EMAIL,
+  UPDATE_PASSWORD,
+  UPDATE_USERNAME,
+  UPDATE_BIO,
+} from "./actionTypes";
 
 export const updateEmail = (email) => {
-  console.log("updateEmail action");
   return { type: UPDATE_EMAIL, payload: email };
 };
 
 export const updatePassword = (password) => {
-  console.log("updatePassword action");
   return { type: UPDATE_PASSWORD, payload: password };
+};
+
+export const updateUsername = (username) => {
+  return { type: UPDATE_USERNAME, payload: username };
+};
+
+export const updateBio = (bio) => {
+  return { type: UPDATE_BIO, payload: bio };
 };
