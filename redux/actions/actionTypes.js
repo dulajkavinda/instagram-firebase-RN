@@ -8,3 +8,5 @@ export const UPDATE_BIO = "UPDATE_BIO";
 
 export const SIGNIN = "SIGNIN";
 export const SIGNUP = "SIGNUP";
+
+export const USER_STATUS = "USER_STATUS";
