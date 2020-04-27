@@ -1,40 +1,28 @@
-import React, { Component } from "react";
-import { View, Text, Button, TextInput } from "react-native";
-import styles from "../styles";
-
+import React from "react";
+import { Text, View, TextInput, Button } from "react-native";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { updateEmail, updatePassword } from "../redux/actions/user";
+import { updateEmail, updatePassword } from "../redux/actions/user.js";
+import styles from "../styles.js";
 
-class Signin extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
+class Signin extends React.Component {
   render() {
     return (
       <View style={styles.container}>
         <Text> Signin </Text>
         <TextInput
-          value={this.props.user}
-          placeholder="usrname"
-          onChangeText={(input) => {
-            this.props.updateEmail(input);
-          }}
-        ></TextInput>
+          value={this.props.user.email}
+          onChangeText={(input) => this.props.updateEmail(input)}
+          placeholder="Email"
+        />
         <TextInput
-          value={this.props.user}
-          placeholder="password"
-          onChangeText={(input) => {
-            this.props.updatePassword(input);
-          }}
-        ></TextInput>
+          value={this.props.user.password}
+          onChangeText={(input) => this.props.updatePassword(input)}
+          placeholder="Password"
+        />
         <Button
-          title="Sign Up"
-          onPress={() => {
-            this.props.navigation.navigate("Signup");
-          }}
+          title="Signup"
+          onPress={() => this.props.navigation.navigate("Signup")}
         />
       </View>
     );
@@ -47,7 +35,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state,
+    user: state.user,
   };
 };
 

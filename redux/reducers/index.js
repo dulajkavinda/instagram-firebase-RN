@@ -20,8 +20,10 @@ const counter = (state = 115, action) => {
 const user = (state = 115, action) => {
   switch (action.type) {
     case UPDATE_PASSWORD:
+      console.log("updatePassword reducer" + action.payload);
       return { ...state, password: action.payload };
     case UPDATE_EMAIL:
+      console.log("updateEmail reducer" + action.payload);
       return { ...state, email: action.payload };
     default:
       return state;
