@@ -1,27 +1,44 @@
 import React, { Component } from "react";
-import { View, Text, TextInput } from "react-native";
+import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import styles from "../styles";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { updateEmail, updatePassword } from "../redux/actions/user";
 
-class Signup extends Component {
+class Signup extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text> Signup </Text>
         <TextInput
+          style={styles.border}
           value={this.props.user.email}
-          placeholder="usrname"
           onChangeText={(input) => this.props.updateEmail(input)}
-        ></TextInput>
+          placeholder="Email"
+        />
         <TextInput
+          style={styles.border}
           value={this.props.user.password}
-          placeholder="password"
-          onChangeText={(input) => {
-            this.props.updatePassword(input);
-          }}
-        ></TextInput>
+          onChangeText={(input) => this.props.updatePassword(input)}
+          placeholder="Password"
+        />
+        <TextInput
+          style={styles.border}
+          value={this.props.user.password}
+          onChangeText={(input) => this.props.updatePassword(input)}
+          placeholder="Username"
+        />
+        <TextInput
+          style={styles.border}
+          value={this.props.user.password}
+          onChangeText={(input) => this.props.updatePassword(input)}
+          placeholder="Bio"
+        />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => this.props.navigation.navigate("Signup")}
+        >
+          <Text>Signup</Text>
+        </TouchableOpacity>
       </View>
     );
   }
