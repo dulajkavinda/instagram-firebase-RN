@@ -1,6 +1,4 @@
 import {
-  ADD,
-  SUBTRACT,
   UPDATE_PASSWORD,
   UPDATE_EMAIL,
   UPDATE_BIO,
@@ -10,17 +8,6 @@ import {
   USER_STATUS,
 } from "../actions/actionTypes";
 import { combineReducers } from "redux";
-
-const counter = (state = 115, action) => {
-  switch (action.type) {
-    case ADD:
-      return state + 1;
-    case SUBTRACT:
-      return state - 1;
-    default:
-      return state;
-  }
-};
 
 const user = (state = {}, action) => {
   switch (action.type) {
@@ -44,6 +31,5 @@ const user = (state = {}, action) => {
 };
 
 export default combineReducers({
-  counter,
   user,
 });

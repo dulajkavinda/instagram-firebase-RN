@@ -1,15 +1,14 @@
 import React from "react";
 import { Text, View } from "react-native";
-
 import { connect } from "react-redux";
-
 import styles from "../styles.js";
 
 class Profile extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text> Profile {this.props.counter}</Text>
+        <Text>{this.props.user.email}</Text>
+        <Text>{this.props.user.uid}</Text>
       </View>
     );
   }
@@ -17,7 +16,7 @@ class Profile extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    counter: state,
+    user: state.user,
   };
 };
 
