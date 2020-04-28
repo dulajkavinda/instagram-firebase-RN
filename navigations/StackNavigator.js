@@ -10,7 +10,7 @@ const StackTab = createStackNavigator();
 const StackTabScreen = () => (
   <StackTab.Navigator>
     <StackTab.Screen
-      name="🔥INSTAGRAM 🔥"
+      name="🔥Instagram 🔥"
       component={TabNavigator}
       options={{ headerTitleAlign: "center" }}
     />
