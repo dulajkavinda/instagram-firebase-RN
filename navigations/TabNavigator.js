@@ -12,13 +12,14 @@ import Home from "../screens/Home";
 import Profile from "../screens/Profile";
 import Search from "../screens/Search";
 import Activity from "../screens/Activity";
-import Upload from "../screens/Upload";
+import Post from "../screens/Post";
 
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigator() {
   return (
     <Tab.Navigator
+      initialRouteName="Post"
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
@@ -31,7 +32,7 @@ export default function TabNavigator() {
             iconName = focused ? "ios-search" : "ios-search";
           } else if (route.name === "Activity") {
             iconName = focused ? "ios-grid" : "ios-grid";
-          } else if (route.name === "Upload") {
+          } else if (route.name === "Post") {
             iconName = focused
               ? "md-add-circle-outline"
               : "md-add-circle-outline";
@@ -54,7 +55,7 @@ export default function TabNavigator() {
     >
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Search" component={Search} />
-      <Tab.Screen name="Upload" component={Upload} />
+      <Tab.Screen name="Post" component={Post} />
       <Tab.Screen name="Activity" component={Activity} />
       <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
