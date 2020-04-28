@@ -3,7 +3,7 @@ import { Text, View, TextInput, Image, TouchableOpacity } from "react-native";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { updateDecription } from "../redux/actions/post";
+import { updateDecription, uploadPost } from "../redux/actions/post";
 
 import styles from "../styles";
 
@@ -26,7 +26,7 @@ class Post extends React.Component {
         />
         <TouchableOpacity
           style={styles.button}
-          onPress={() => this.props.navigation.navigate("Signup")}
+          onPress={() => this.props.uploadPost()}
         >
           <Text>Post</Text>
         </TouchableOpacity>
@@ -43,7 +43,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ updateDecription }, dispatch);
+  return bindActionCreators({ updateDecription, uploadPost }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);
