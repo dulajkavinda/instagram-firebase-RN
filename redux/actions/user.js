@@ -57,7 +57,7 @@ export const signup = () => {
         .createUserWithEmailAndPassword(email, password);
       alert(response);
 
-      if (response.user.ui) {
+      if (response.user.uid) {
         let user = {
           uid: response.user.uid,
           email: email,
@@ -66,6 +66,8 @@ export const signup = () => {
           photo: "",
           token: null,
         };
+        let setUser = db.collection("users").doc(response.user.uid).set(user);
+        dispatch({ type: SIGNIN, payload: response.user });
       }
     } catch (error) {
       alert(error);

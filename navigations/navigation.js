@@ -8,17 +8,17 @@ import TabNavigator from "./TabNavigator";
 import AuthNavigator from "./AuthNavigator";
 import firebase from "firebase";
 
-import { USER_STATUS } from "../redux/actions/actionTypes";
+import { USER_STATUS, SIGNIN } from "../redux/actions/actionTypes";
 
 export default () => {
   let isLoading = false;
-  const isUserLogged = useSelector((state) => state.user.user_status);
+  const isUserLogged = useSelector((state) => state.user.uid);
   const dispatch = useDispatch();
 
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       console.log(user.uid);
-      dispatch({ type: USER_STATUS, payload: user.uid });
+      dispatch({ type: SIGNIN, payload: user });
     } else {
       console.log("not logged");
     }
@@ -26,7 +26,7 @@ export default () => {
 
   return (
     <NavigationContainer>
-      {!isUserLogged ? <AuthNavigator /> : <TabNavigator />}
+      {isUserLogged == null ? <AuthNavigator /> : <TabNavigator />}
     </NavigationContainer>
   );
 };

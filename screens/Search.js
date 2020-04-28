@@ -9,7 +9,8 @@ class Search extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text> Search {this.props.counter}</Text>
+        <Text>{this.props.user.email}</Text>
+        <Text>{this.props.user.uid}</Text>
       </View>
     );
   }
@@ -17,7 +18,7 @@ class Search extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    counter: state,
+    user: state.user,
   };
 };
 
