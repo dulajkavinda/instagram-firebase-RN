@@ -12,3 +12,4 @@ export const SIGNUP = "SIGNUP";
 export const USER_STATUS = "USER_STATUS";
 
 export const UPDATE_DESCRIPTION = "UPDATE_DESCRIPTION";
+export const GET_POSTS = "GET_POSTS";

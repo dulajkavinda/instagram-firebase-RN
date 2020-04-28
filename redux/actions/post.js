@@ -1,7 +1,7 @@
 import firabase from "firebase";
 import db from "../../config/firabase";
 
-import { UPDATE_DESCRIPTION } from "./actionTypes";
+import { UPDATE_DESCRIPTION, GET_POSTS } from "./actionTypes";
 
 export const updateDecription = (description) => {
   return { type: UPDATE_DESCRIPTION, payload: description };
@@ -25,6 +25,22 @@ export const uploadPost = () => {
       ref.set(upload);
     } catch (error) {
       alert(error);
+    }
+  };
+};
+
+export const getPosts = () => {
+  return async (dispatch, getState) => {
+    try {
+      const posts = await db.collection("posts").get();
+
+      let array = [];
+      posts.forEach((post) => {
+        array.push(post.data());
+      });
+      dispatch({ type: GET_POSTS, payload: array });
+    } catch (e) {
+      alert(e);
     }
   };
 };

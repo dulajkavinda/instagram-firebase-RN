@@ -8,7 +8,10 @@ const middleware = applyMiddleware(thunkMiddleware, logger);
 const store = createStore(reducer, middleware);
 import firebaseConfig from "./config/firabase";
 
+console.disableYellowBox = true;
+
 import Navigation from "./navigations/navigation";
+import { YellowBox } from "react-native";
 
 class App extends React.Component {
   render() {
