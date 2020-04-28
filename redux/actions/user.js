@@ -8,9 +8,8 @@ import {
   USER_STATUS,
 } from "./actionTypes";
 
-import { AsyncStorage } from "react-native";
-
 import firebase from "firebase";
+import db from "../../config/firabase";
 
 export const updateEmail = (email) => {
   return { type: UPDATE_EMAIL, payload: email };
@@ -50,13 +49,24 @@ export const signin = () => {
 
 export const signup = () => {
   return async (dispatch, getState) => {
-    const { email, password } = getState().user;
+    const { email, password, bio, username } = getState().user;
 
     try {
       const response = await firebase
         .auth()
         .createUserWithEmailAndPassword(email, password);
       alert(response);
+
+      if (response.user.ui) {
+        let user = {
+          uid: response.user.uid,
+          email: email,
+          bio: bio,
+          username: username,
+          photo: "",
+          token: null,
+        };
+      }
     } catch (error) {
       alert(error);
     }
