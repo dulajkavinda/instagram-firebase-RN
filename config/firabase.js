@@ -1,5 +1,5 @@
 import firebase from "firebase";
-
+require("firebase/firestore");
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDrsEcTxoTrQ5RSkG4836iLT3RD0ZrjQcs",
@@ -14,4 +14,11 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-export default firebaseConfig;
+const db = firebase.firestore();
+
+//Need to add this to forgo deprecated warnings
+db.settings({
+  timestampsInSnapshots: true,
+});
+
+export default db;
