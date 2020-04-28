@@ -3,7 +3,6 @@ import { Text, View, TextInput, TouchableOpacity } from "react-native";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { updateEmail, updatePassword, signin } from "../redux/actions/user.js";
-
 import styles from "../styles.js";
 
 class Signin extends React.Component {
