@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, FlatList } from "react-native";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getPosts } from "../redux/actions/post";
@@ -14,11 +14,24 @@ class Home extends React.Component {
     if (this.props.posts.feed == null) return null;
     return (
       <View style={styles.container}>
-        <Image
+        {/* <Image
           style={styles.postPhoto}
           source={{ uri: this.props.posts.feed[1].postPhoto }}
         />
-        <Text>{this.props.posts.feed[1].postDescription}</Text>
+        <Text>{this.props.posts.feed[1].postDescription}</Text> */}
+        <FlatList
+          data={this.props.posts.feed}
+          renderItem={({ item }) => (
+            <View>
+              <Image
+                style={styles.postPhoto}
+                source={{ uri: item.postPhoto }}
+              />
+              <Text>{item.postDescription}</Text>
+            </View>
+          )}
+          keyExtractor={(item) => item.id}
+        />
       </View>
     );
   }
