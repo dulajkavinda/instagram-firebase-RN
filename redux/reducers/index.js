@@ -7,6 +7,7 @@ import {
   SIGNUP,
   USER_STATUS,
   UPDATE_DESCRIPTION,
+  GET_POSTS,
 } from "../actions/actionTypes";
 import { combineReducers } from "redux";
 
@@ -35,6 +36,8 @@ const post = (state = {}, action) => {
   switch (action.type) {
     case UPDATE_DESCRIPTION:
       return { ...state, description: action.payload };
+    case GET_POSTS:
+      return { ...state, feed: action.payload };
     default:
       return state;
   }
