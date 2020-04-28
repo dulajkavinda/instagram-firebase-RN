@@ -53,7 +53,7 @@ export default function TabNavigator() {
         },
       }}
     >
-      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Home" component={Home} title="Home" />
       <Tab.Screen name="Search" component={Search} />
       <Tab.Screen name="Post" component={Post} />
       <Tab.Screen name="Activity" component={Activity} />

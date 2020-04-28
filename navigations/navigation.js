@@ -6,6 +6,8 @@ import Loading from "../screens/Loading";
 
 import TabNavigator from "./TabNavigator";
 import AuthNavigator from "./AuthNavigator";
+import StackTabScreen from "./StackNavigator";
+
 import firebase from "firebase";
 
 import { USER_STATUS, SIGNIN } from "../redux/actions/actionTypes";
@@ -26,7 +28,7 @@ export default () => {
 
   return (
     <NavigationContainer>
-      {isUserLogged == null ? <AuthNavigator /> : <TabNavigator />}
+      {isUserLogged == null ? <AuthNavigator /> : <StackTabScreen />}
     </NavigationContainer>
   );
 };
