@@ -6,7 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import TabNavigator from "../navigations/TabNavigator";
-import Camera from "../screens/Camera";
+import CameraUpload from "../screens/CameraUpload";
 
 const StackTab = createStackNavigator();
 
@@ -51,9 +51,10 @@ const StackTabScreen = () => (
     />
     <StackTab.Screen
       name="Camera"
-      component={Camera}
+      component={CameraUpload}
       options={{
         headerTitleAlign: "center",
+        headerShown: false,
       }}
     />
   </StackTab.Navigator>
