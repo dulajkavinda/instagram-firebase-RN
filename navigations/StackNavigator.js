@@ -1,7 +1,8 @@
 import React from "react";
-import { Image } from "react-native";
+import { Image, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
+import { useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import TabNavigator from "../navigations/TabNavigator";
@@ -18,11 +19,21 @@ function LogoTitle() {
 }
 
 function CameraButton() {
-  return <Ionicons style={{ marginLeft: 10 }} name="ios-camera" size={30} />;
+  const navigation = useNavigation();
+  return (
+    <TouchableOpacity onPress={() => navigation.navigate("Search")}>
+      <Ionicons style={{ marginLeft: 10 }} name="ios-camera" size={30} />
+    </TouchableOpacity>
+  );
 }
 
 function MessageButton() {
-  return <Ionicons style={{ marginRight: 10 }} name="ios-send" size={30} />;
+  const navigation = useNavigation();
+  return (
+    <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+      <Ionicons style={{ marginRight: 10 }} name="ios-send" size={30} />
+    </TouchableOpacity>
+  );
 }
 
 const StackTabScreen = () => (
