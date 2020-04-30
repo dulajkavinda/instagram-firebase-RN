@@ -6,6 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import TabNavigator from "../navigations/TabNavigator";
+import Camera from "../screens/Camera";
 
 const StackTab = createStackNavigator();
 
@@ -21,7 +22,7 @@ function LogoTitle() {
 function CameraButton() {
   const navigation = useNavigation();
   return (
-    <TouchableOpacity onPress={() => navigation.navigate("Search")}>
+    <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
       <Ionicons style={{ marginLeft: 10 }} name="ios-camera" size={30} />
     </TouchableOpacity>
   );
@@ -46,6 +47,13 @@ const StackTabScreen = () => (
         headerTitle: (props) => <LogoTitle {...props} />,
         headerLeft: (props) => <CameraButton {...props} />,
         headerRight: (props) => <MessageButton {...props} />,
+      }}
+    />
+    <StackTab.Screen
+      name="Camera"
+      component={Camera}
+      options={{
+        headerTitleAlign: "center",
       }}
     />
   </StackTab.Navigator>
