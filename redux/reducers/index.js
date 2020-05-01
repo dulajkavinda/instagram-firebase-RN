@@ -8,6 +8,7 @@ import {
   USER_STATUS,
   UPDATE_DESCRIPTION,
   GET_POSTS,
+  UPDATE_PHOTO,
 } from "../actions/actionTypes";
 import { combineReducers } from "redux";
 
@@ -38,6 +39,8 @@ const post = (state = {}, action) => {
       return { ...state, description: action.payload };
     case GET_POSTS:
       return { ...state, feed: action.payload };
+    case UPDATE_PHOTO:
+      return { ...state, photo: action.payload };
     default:
       return state;
   }

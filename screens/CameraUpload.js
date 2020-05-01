@@ -1,16 +1,28 @@
 import React from "react";
 import styles from "../styles";
 import { Ionicons } from "@expo/vector-icons";
-import { Text, View, SafeAreaView, TouchableOpacity } from "react-native";
-import { Camera, Permissions } from "expo-camera";
+import { SafeAreaView, TouchableOpacity } from "react-native";
+
+import * as ImageManipulator from "expo-image-manipulator";
+import { Camera } from "expo-camera";
+
+import { uploadImage, updatePhoto } from "../redux/actions/post";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 class CameraUpload extends React.Component {
   snapPhoto = async () => {
-    const permission = await Permissions.askAsync(Permissions.CAMERA);
-    if (permission.status === "granted") {
+    const { status } = await Camera.requestPermissionsAsync();
+    if (status === "granted") {
       const image = await this.camera.takePictureAsync();
-      console.log(image);
+      const resize = await ImageManipulator.manipulateAsync(image.uri, [], {
+        format: ImageManipulator.SaveFormat.JPEG,
+        compress: 0.1,
+      });
+      console.log(resize);
+      this.props.updatePhoto(resize.uri);
+      this.props.navigation.navigate("Post");
+      this.props.uploadImage(resize);
     }
   };
 
@@ -44,4 +56,8 @@ const mapStateToProps = (state) => {
   return {};
 };
 
-export default connect(mapStateToProps)(CameraUpload);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ uploadImage, updatePhoto }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CameraUpload);

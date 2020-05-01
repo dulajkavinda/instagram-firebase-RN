@@ -14,8 +14,7 @@ class Post extends React.Component {
         <Image
           style={styles.postPhoto}
           source={{
-            uri:
-              "https://firebasestorage.googleapis.com/v0/b/instagram-rn-fca81.appspot.com/o/galaxy.jpg?alt=media&token=2a60bd49-60ba-4f36-ab00-fa5c42136614",
+            uri: this.props.post.uri,
           }}
         />
         <TextInput
