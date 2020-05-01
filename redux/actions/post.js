@@ -44,3 +44,40 @@ export const getPosts = () => {
     }
   };
 };
+
+export const uploadImage = (image) => {
+  return async (dispatch, getState) => {
+    try {
+      const blob = await new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+          resolve(xhr.response);
+        };
+
+        xhr.onerror = function () {
+          reject(new Error("uriToBlob failed"));
+        };
+        xhr.responseType = "blob";
+        xhr.open("GET", image.uri, true);
+        xhr.send(null);
+      });
+
+      var storageRef = firabase.storage().ref();
+      storageRef
+        .child("uploads/photo1.jpg")
+        .put(blob, {
+          contentType: "image/jpeg",
+        })
+        .then((snapshot) => {
+          blob.close();
+          resolve(snapshot);
+          alert("done");
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    } catch (e) {
+      alert(e);
+    }
+  };
+};

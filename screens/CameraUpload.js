@@ -6,7 +6,9 @@ import { SafeAreaView, TouchableOpacity } from "react-native";
 import * as ImageManipulator from "expo-image-manipulator";
 import { Camera } from "expo-camera";
 
+import { uploadImage } from "../redux/actions/post";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 class CameraUpload extends React.Component {
   snapPhoto = async () => {
@@ -16,9 +18,10 @@ class CameraUpload extends React.Component {
       const manipResult = await ImageManipulator.manipulateAsync(
         image.localUri || image.uri,
         [{ rotate: 90 }, { flip: ImageManipulator.FlipType.Vertical }],
-        { compress: 0.2, format: ImageManipulator.SaveFormat.PNG }
+        { compress: 0.1, format: ImageManipulator.SaveFormat.PNG }
       );
-      console.log(image);
+      console.log(manipResult);
+      this.props.uploadImage(manipResult);
     }
   };
 
@@ -52,4 +55,8 @@ const mapStateToProps = (state) => {
   return {};
 };
 
-export default connect(mapStateToProps)(CameraUpload);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ uploadImage }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CameraUpload);
