@@ -6,7 +6,7 @@ import { SafeAreaView, TouchableOpacity } from "react-native";
 import * as ImageManipulator from "expo-image-manipulator";
 import { Camera } from "expo-camera";
 
-import { uploadImage } from "../redux/actions/post";
+import { uploadImage, updatePhoto } from "../redux/actions/post";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
@@ -20,6 +20,8 @@ class CameraUpload extends React.Component {
         compress: 0.1,
       });
       console.log(resize);
+      this.props.updatePhoto(resize.uri);
+      this.props.navigation.navigate("Post");
       this.props.uploadImage(resize);
     }
   };
@@ -55,7 +57,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ uploadImage }, dispatch);
+  return bindActionCreators({ uploadImage, updatePhoto }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CameraUpload);

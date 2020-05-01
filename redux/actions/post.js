@@ -3,10 +3,14 @@ import db from "../../config/firabase";
 
 import uuid from "react-native-uuid";
 
-import { UPDATE_DESCRIPTION, GET_POSTS } from "./actionTypes";
+import { UPDATE_DESCRIPTION, GET_POSTS, UPDATE_PHOTO } from "./actionTypes";
 
 export const updateDecription = (description) => {
   return { type: UPDATE_DESCRIPTION, payload: description };
+};
+
+export const updatePhoto = (photopath) => {
+  return { type: UPDATE_PHOTO, payload: photopath };
 };
 
 export const uploadPost = () => {
@@ -66,7 +70,7 @@ export const uploadImage = (image) => {
 
       var storageRef = firabase.storage().ref();
       storageRef
-        .child(uuid.v1())
+        .child("photos/" + uuid.v1())
         .put(blob, {
           contentType: "image/jpeg",
         })
@@ -78,8 +82,10 @@ export const uploadImage = (image) => {
         .catch((error) => {
           reject(error);
         });
+
+      storageRef.getDownloadURL().then((url) => console.log(url));
     } catch (e) {
-      alert(e);
+      console.log(e);
     }
   };
 };
