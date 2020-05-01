@@ -1,6 +1,8 @@
 import firabase from "firebase";
 import db from "../../config/firabase";
 
+import uuid from "react-native-uuid";
+
 import { UPDATE_DESCRIPTION, GET_POSTS } from "./actionTypes";
 
 export const updateDecription = (description) => {
@@ -64,7 +66,7 @@ export const uploadImage = (image) => {
 
       var storageRef = firabase.storage().ref();
       storageRef
-        .child("uploads/photo3.jpg")
+        .child(uuid.v1())
         .put(blob, {
           contentType: "image/jpeg",
         })
