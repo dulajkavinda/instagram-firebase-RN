@@ -1,15 +1,23 @@
 import React from "react";
 import styles from "../styles";
 import { Ionicons } from "@expo/vector-icons";
-import { Text, View, SafeAreaView, TouchableOpacity } from "react-native";
-import { Camera, Permissions } from "expo-camera";
+import { SafeAreaView, TouchableOpacity } from "react-native";
+
+import * as ImageManipulator from "expo-image-manipulator";
+import { Camera } from "expo-camera";
+
 import { connect } from "react-redux";
 
 class CameraUpload extends React.Component {
   snapPhoto = async () => {
-    const permission = await Permissions.askAsync(Permissions.CAMERA);
-    if (permission.status === "granted") {
+    const { status } = await Camera.requestPermissionsAsync();
+    if (status === "granted") {
       const image = await this.camera.takePictureAsync();
+      const manipResult = await ImageManipulator.manipulateAsync(
+        image.localUri || image.uri,
+        [{ rotate: 90 }, { flip: ImageManipulator.FlipType.Vertical }],
+        { compress: 0.2, format: ImageManipulator.SaveFormat.PNG }
+      );
       console.log(image);
     }
   };
