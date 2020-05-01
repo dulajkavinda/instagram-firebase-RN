@@ -15,13 +15,12 @@ class CameraUpload extends React.Component {
     const { status } = await Camera.requestPermissionsAsync();
     if (status === "granted") {
       const image = await this.camera.takePictureAsync();
-      const manipResult = await ImageManipulator.manipulateAsync(
-        image.localUri || image.uri,
-        [{ rotate: 90 }, { flip: ImageManipulator.FlipType.Vertical }],
-        { compress: 0.1, format: ImageManipulator.SaveFormat.PNG }
-      );
-      console.log(manipResult);
-      this.props.uploadImage(manipResult);
+      const resize = await ImageManipulator.manipulateAsync(image.uri, [], {
+        format: ImageManipulator.SaveFormat.JPEG,
+        compress: 0.1,
+      });
+      console.log(resize);
+      this.props.uploadImage(resize);
     }
   };
 

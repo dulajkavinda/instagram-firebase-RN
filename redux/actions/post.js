@@ -64,7 +64,7 @@ export const uploadImage = (image) => {
 
       var storageRef = firabase.storage().ref();
       storageRef
-        .child("uploads/photo1.jpg")
+        .child("uploads/photo3.jpg")
         .put(blob, {
           contentType: "image/jpeg",
         })
