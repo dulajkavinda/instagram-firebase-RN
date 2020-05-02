@@ -21,8 +21,7 @@ export const uploadPost = () => {
       const upload = {
         uid: user.uid,
         postDescription: post.description,
-        postPhoto:
-          "https://firebasestorage.googleapis.com/v0/b/instagram-rn-fca81.appspot.com/o/galaxy.jpg?alt=media&token=2a60bd49-60ba-4f36-ab00-fa5c42136614",
+        postPhoto: post.photo,
         username: user.email,
       };
 
@@ -68,24 +67,7 @@ export const uploadImage = (image) => {
         xhr.send(null);
       });
 
-      // const imageRef = await ref
-      //   .child("photos/" + uuid.v1())
-      //   .put(blob, {
-      //     contentType: "image/jpeg",
-      //   })
-      //   .then((snapshot) => {
-      //     blob.close();
-      //     alert(snapshot);
-      //     alert("done");
-      //   })
-      //   .catch((error) => {
-      //     alert(error);
-      //   });
-
-      // let url = await imageRef.getDownloadURL().then((url) => console.log(url));
-
       var storageRef = firebase.storage().ref();
-
       var uploadTask = storageRef.child("photos/" + uuid.v1()).put(blob, {
         contentType: "image/jpeg",
       });
@@ -109,6 +91,7 @@ export const uploadImage = (image) => {
         function () {
           uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
             console.log("File available at", downloadURL);
+            dispatch({ type: UPDATE_PHOTO, payload: downloadURL });
           });
         }
       );
