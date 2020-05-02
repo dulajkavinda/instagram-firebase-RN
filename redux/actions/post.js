@@ -1,4 +1,4 @@
-import firabase from "firebase";
+import firebase from "firebase";
 import db from "../../config/firabase";
 
 import uuid from "react-native-uuid";
@@ -68,22 +68,23 @@ export const uploadImage = (image) => {
         xhr.send(null);
       });
 
-      var storageRef = firabase.storage().ref();
-      storageRef
-        .child("photos/" + uuid.v1())
-        .put(blob, {
-          contentType: "image/jpeg",
-        })
-        .then((snapshot) => {
-          blob.close();
-          resolve(snapshot);
-          alert("done");
-        })
-        .catch((error) => {
-          reject(error);
-        });
+      // var ref = firabase.storage().ref();
 
-      storageRef.getDownloadURL().then((url) => console.log(url));
+      // const imageRef = await ref
+      //   .child("photos/" + uuid.v1())
+      //   .put(blob, {
+      //     contentType: "image/jpeg",
+      //   })
+      //   .then((snapshot) => {
+      //     blob.close();
+      //     alert(snapshot);
+      //     alert("done");
+      //   })
+      //   .catch((error) => {
+      //     alert(error);
+      //   });
+
+      // let url = await imageRef.getDownloadURL().then((url) => console.log(url));
     } catch (e) {
       console.log(e);
     }
