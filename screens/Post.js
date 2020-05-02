@@ -14,7 +14,7 @@ class Post extends React.Component {
         <Image
           style={styles.postPhoto}
           source={{
-            uri: this.props.post.uri,
+            uri: this.props.post.photo,
           }}
         />
         <TextInput

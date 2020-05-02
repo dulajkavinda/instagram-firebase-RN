@@ -1,18 +1,21 @@
-import firabase from "firebase";
+import firebase from "firebase";
 import db from "../../config/firabase";
-
 import uuid from "react-native-uuid";
 
+// post එකට අදාල action types  ටි​ක
 import { UPDATE_DESCRIPTION, GET_POSTS, UPDATE_PHOTO } from "./actionTypes";
 
+// මේකෙන් තමයි post එකක් දානකොට description එක update කරන්​නේ
 export const updateDecription = (description) => {
   return { type: UPDATE_DESCRIPTION, payload: description };
 };
 
+// මේකෙන් තමයි post එකක් දානකොට ​photo එක update කරන්​නේ
 export const updatePhoto = (photopath) => {
   return { type: UPDATE_PHOTO, payload: photopath };
 };
 
+// මේකෙන් තමයි post එක upload කරන​නේ
 export const uploadPost = () => {
   return async (dispatch, getState) => {
     try {
@@ -21,8 +24,7 @@ export const uploadPost = () => {
       const upload = {
         uid: user.uid,
         postDescription: post.description,
-        postPhoto:
-          "https://firebasestorage.googleapis.com/v0/b/instagram-rn-fca81.appspot.com/o/galaxy.jpg?alt=media&token=2a60bd49-60ba-4f36-ab00-fa5c42136614",
+        postPhoto: post.photo,
         username: user.email,
       };
 
@@ -35,6 +37,7 @@ export const uploadPost = () => {
   };
 };
 
+// මේකන් තමයි firebase එක්කේ තියන ඔක්කොම post ගන්​නේ
 export const getPosts = () => {
   return async (dispatch, getState) => {
     try {
@@ -51,6 +54,7 @@ export const getPosts = () => {
   };
 };
 
+// image එක upload කරන්නේ මේ රෙද්දෙ​න් ( දිග වැඩී මෙච්චර ඔනෙත් ​නෑ )
 export const uploadImage = (image) => {
   return async (dispatch, getState) => {
     try {
@@ -68,22 +72,34 @@ export const uploadImage = (image) => {
         xhr.send(null);
       });
 
-      var storageRef = firabase.storage().ref();
-      storageRef
-        .child("photos/" + uuid.v1())
-        .put(blob, {
-          contentType: "image/jpeg",
-        })
-        .then((snapshot) => {
-          blob.close();
-          resolve(snapshot);
-          alert("done");
-        })
-        .catch((error) => {
-          reject(error);
-        });
+      var storageRef = firebase.storage().ref();
+      var uploadTask = storageRef.child("photos/" + uuid.v1()).put(blob, {
+        contentType: "image/jpeg",
+      });
 
-      storageRef.getDownloadURL().then((url) => console.log(url));
+      uploadTask.on(
+        "state_changed",
+        function (snapshot) {
+          var progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case firebase.storage.TaskState.PAUSED:
+              console.log("Upload is paused");
+              break;
+            case firebase.storage.TaskState.RUNNING:
+              console.log("Upload is running");
+              break;
+          }
+        },
+        function (error) {},
+        function () {
+          uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+            console.log("File available at", downloadURL);
+            dispatch({ type: UPDATE_PHOTO, payload: downloadURL });
+          });
+        }
+      );
     } catch (e) {
       console.log(e);
     }
