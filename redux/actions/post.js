@@ -1,6 +1,5 @@
 import firebase from "firebase";
 import db from "../../config/firabase";
-
 import uuid from "react-native-uuid";
 
 import { UPDATE_DESCRIPTION, GET_POSTS, UPDATE_PHOTO } from "./actionTypes";
