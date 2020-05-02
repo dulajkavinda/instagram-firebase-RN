@@ -2,16 +2,20 @@ import firebase from "firebase";
 import db from "../../config/firabase";
 import uuid from "react-native-uuid";
 
+// post එකට අදාල action types  ටි​ක
 import { UPDATE_DESCRIPTION, GET_POSTS, UPDATE_PHOTO } from "./actionTypes";
 
+// මේකෙන් තමයි post එකක් දානකොට description එක update කරන්​නේ
 export const updateDecription = (description) => {
   return { type: UPDATE_DESCRIPTION, payload: description };
 };
 
+// මේකෙන් තමයි post එකක් දානකොට ​photo එක update කරන්​නේ
 export const updatePhoto = (photopath) => {
   return { type: UPDATE_PHOTO, payload: photopath };
 };
 
+// මේකෙන් තමයි post එක upload කරන​නේ
 export const uploadPost = () => {
   return async (dispatch, getState) => {
     try {
@@ -33,6 +37,7 @@ export const uploadPost = () => {
   };
 };
 
+// මේකන් තමයි firebase එක්කේ තියන ඔක්කොම post ගන්​නේ
 export const getPosts = () => {
   return async (dispatch, getState) => {
     try {
@@ -49,6 +54,7 @@ export const getPosts = () => {
   };
 };
 
+// image එක upload කරන්නේ මේ රෙද්දෙ​න් ( දිග වැඩී මෙච්චර ඔනෙත් ​නෑ )
 export const uploadImage = (image) => {
   return async (dispatch, getState) => {
     try {
