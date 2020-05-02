@@ -3,7 +3,6 @@ import {
   UPDATE_PASSWORD,
   UPDATE_USERNAME,
   UPDATE_BIO,
-  SIGNUP,
   SIGNIN,
   USER_STATUS,
 } from "./actionTypes";
