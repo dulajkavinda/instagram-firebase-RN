@@ -68,8 +68,6 @@ export const uploadImage = (image) => {
         xhr.send(null);
       });
 
-      // var ref = firabase.storage().ref();
-
       // const imageRef = await ref
       //   .child("photos/" + uuid.v1())
       //   .put(blob, {
@@ -85,6 +83,35 @@ export const uploadImage = (image) => {
       //   });
 
       // let url = await imageRef.getDownloadURL().then((url) => console.log(url));
+
+      var storageRef = firebase.storage().ref();
+
+      var uploadTask = storageRef.child("photos/" + uuid.v1()).put(blob, {
+        contentType: "image/jpeg",
+      });
+
+      uploadTask.on(
+        "state_changed",
+        function (snapshot) {
+          var progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case firebase.storage.TaskState.PAUSED:
+              console.log("Upload is paused");
+              break;
+            case firebase.storage.TaskState.RUNNING:
+              console.log("Upload is running");
+              break;
+          }
+        },
+        function (error) {},
+        function () {
+          uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+            console.log("File available at", downloadURL);
+          });
+        }
+      );
     } catch (e) {
       console.log(e);
     }
