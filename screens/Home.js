@@ -1,9 +1,12 @@
 import React from "react";
 import { Text, View, Image, FlatList } from "react-native";
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getPosts } from "../redux/actions/post";
+
 import styles from "../styles.js";
+
 import { Ionicons } from "@expo/vector-icons";
 
 class Home extends React.Component {
