@@ -1,3 +1,7 @@
+import firebase from "firebase";
+import db from "../../config/firabase";
+
+// user එකට අදාල action types  ටි​ක
 import {
   UPDATE_EMAIL,
   UPDATE_PASSWORD,
@@ -7,29 +11,32 @@ import {
   USER_STATUS,
 } from "./actionTypes";
 
-import firebase from "firebase";
-import db from "../../config/firabase";
-
+// මේකෙන් තමයි user ​ගේ email එක update කරන්​නේ
 export const updateEmail = (email) => {
   return { type: UPDATE_EMAIL, payload: email };
 };
 
+// මේකෙන් තමයි user ​ගේ password එක update කරන්​නේ
 export const updatePassword = (password) => {
   return { type: UPDATE_PASSWORD, payload: password };
 };
 
+// මේකෙන් තමයි user ​ගේ username එක update කරන්​නේ
 export const updateUsername = (username) => {
   return { type: UPDATE_USERNAME, payload: username };
 };
 
+// මේකෙන් තමයි user ​ගේ bio එක update කරන්​නේ
 export const updateBio = (bio) => {
   return { type: UPDATE_BIO, payload: bio };
 };
 
+// මේකෙන් තමයි user ගේ status එක ගන්නේ ( log වෙලාද නැද්ද කිය​ල )
 export const getUserStatus = (user_status) => {
   return { type: USER_STATUS, payload: user_status };
 };
 
+// මේක තමයි log වෙන function එ​ක
 export const signin = () => {
   return async (dispatch, getState) => {
     const { email, password } = getState().user;
@@ -46,6 +53,7 @@ export const signin = () => {
   };
 };
 
+// මේක තමයි signup වෙන function එ​ක
 export const signup = () => {
   return async (dispatch, getState) => {
     const { email, password, bio, username } = getState().user;
