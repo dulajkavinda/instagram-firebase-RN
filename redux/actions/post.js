@@ -11,7 +11,8 @@ export const updateDecription = (description) => {
   return { type: UPDATE_DESCRIPTION, payload: description };
 };
 
-// මේකෙන් තමයි post එකක් දානකොට ​photo එක update කරන්​නේ
+// මේකෙන් තමයි post එකක්
+// දානකොට ​photo එක update කරන්​නේ
 export const updatePhoto = (photopath) => {
   return { type: UPDATE_PHOTO, payload: photopath };
 };
