@@ -5,7 +5,8 @@ import uuid from "react-native-uuid";
 // post එකට අදාල action types  ටි​ක
 import { UPDATE_DESCRIPTION, GET_POSTS, UPDATE_PHOTO } from "./actionTypes";
 
-// මේකෙන් තමයි post එකක් දානකොට description එක update කරන්​නේ
+// මේකෙන් තමයි post එකක් දානකොට
+// description එක update කරන්​නේ
 export const updateDecription = (description) => {
   return { type: UPDATE_DESCRIPTION, payload: description };
 };
