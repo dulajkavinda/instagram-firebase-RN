@@ -5,7 +5,7 @@ export default class Activity extends React.Component {
   render() {
     return (
       <View>
-        <Text> Activity Screens </Text>
+        <Text> Activity Screen </Text>
       </View>
     );
   }
