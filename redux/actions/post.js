@@ -37,7 +37,8 @@ export const uploadPost = () => {
   };
 };
 
-// මේකන් තමයි firebase එක්කේ තියන ඔක්කොම post ගන්​නේ
+// මේකන් තමයි firebase එක්කේ
+// තියන ඔක්කොම post ගන්​නේ
 export const getPosts = () => {
   return async (dispatch, getState) => {
     try {
@@ -54,7 +55,8 @@ export const getPosts = () => {
   };
 };
 
-// image එක upload කරන්නේ මේ රෙද්දෙ​න් ( දිග වැඩී මෙච්චර ඔනෙත් ​නෑ )
+// image එක upload කරන්නේ මේ
+// රෙද්දෙ​න් ( දිග වැඩී මෙච්චර ඔනෙත් ​නෑ )
 export const uploadImage = (image) => {
   return async (dispatch, getState) => {
     try {
