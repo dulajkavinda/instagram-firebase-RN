@@ -5,6 +5,7 @@ export const UPDATE_USERNAME = "UPDATE_USERNAME";
 export const UPDATE_BIO = "UPDATE_BIO";
 export const SIGNUP = "SIGNUP";
 
+// signin වලට ඕනේ action types
 export const SIGNIN = "SIGNIN";
 export const USER_STATUS = "USER_STATUS";
 
