@@ -20,6 +20,20 @@ import {
 import styles from "../styles";
 
 class Post extends React.Component {
+  state = {
+    showModal: false,
+  };
+
+  post = () => {
+    this.props.uploadPost();
+    this.props.navigation.navigate("Home");
+  };
+
+  setLocation = (location) => {
+    this.setState({ showModal: false });
+    this.props.updateLocation(location);
+  };
+
   modal = () => {
     return (
       <Modal
