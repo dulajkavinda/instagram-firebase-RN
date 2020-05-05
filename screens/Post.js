@@ -1,5 +1,12 @@
 import React from "react";
-import { Text, View, TextInput, Image, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  TextInput,
+  Image,
+  TouchableOpacity,
+  Modal,
+} from "react-native";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
