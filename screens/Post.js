@@ -23,6 +23,9 @@ class Post extends React.Component {
           onChangeText={(input) => this.props.updateDecription(input)}
           placeholder="Description"
         />
+        <TouchableOpacity style={styles.border} onPress={() => {}}>
+          <Text style={styles.gray}>Hello</Text>
+        </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() => this.props.uploadPost()}
