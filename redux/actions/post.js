@@ -114,3 +114,9 @@ export const uploadImage = (image) => {
     }
   };
 };
+
+// මේකෙන් තමයි post එකක් දානකොට
+// loaction එක update කරන්​නේ
+export const updateLocation = (location) => {
+  return { type: UPDATE_LOCATION, payload: location };
+};
