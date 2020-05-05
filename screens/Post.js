@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   Modal,
+  c,
 } from "react-native";
 
 import { connect } from "react-redux";
@@ -19,6 +20,25 @@ import {
 import styles from "../styles";
 
 class Post extends React.Component {
+  modal = () => {
+    return (
+      <Modal
+        animationType="slide"
+        transparent={false}
+        visible={this.state.showModal}
+      >
+        <SafeAreaView style={[styles.container, styles.center]}>
+          <TouchableOpacity
+            style={styles.border}
+            onPress={() => this.setLocation("Philadelphia")}
+          >
+            <Text style={styles.gray}>Philadelphia</Text>
+          </TouchableOpacity>
+        </SafeAreaView>
+      </Modal>
+    );
+  };
+
   render() {
     return (
       <View style={styles.container}>
