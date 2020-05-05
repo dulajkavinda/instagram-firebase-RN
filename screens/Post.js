@@ -6,7 +6,7 @@ import {
   Image,
   TouchableOpacity,
   Modal,
-  c,
+  SafeAreaView,
 } from "react-native";
 
 import { connect } from "react-redux";
@@ -56,6 +56,7 @@ class Post extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        {this.modal()}
         <Image
           style={styles.postPhoto}
           source={{
