@@ -3,7 +3,12 @@ import db from "../../config/firabase";
 import uuid from "react-native-uuid";
 
 // post එකට අදාල action types  ටි​ක
-import { UPDATE_DESCRIPTION, GET_POSTS, UPDATE_PHOTO } from "./actionTypes";
+import {
+  UPDATE_DESCRIPTION,
+  GET_POSTS,
+  UPDATE_PHOTO,
+  UPDATE_LOCATION,
+} from "./actionTypes";
 
 // මේකෙන් තමයි post එකක් දානකොට
 // description එක update කරන්​නේ
