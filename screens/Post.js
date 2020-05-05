@@ -3,7 +3,11 @@ import { Text, View, TextInput, Image, TouchableOpacity } from "react-native";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { updateDecription, uploadPost } from "../redux/actions/post";
+import {
+  updateDecription,
+  uploadPost,
+  updateLocation,
+} from "../redux/actions/post";
 
 import styles from "../styles";
 
