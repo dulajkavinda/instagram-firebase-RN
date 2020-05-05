@@ -9,6 +9,7 @@ import {
   UPDATE_DESCRIPTION,
   GET_POSTS,
   UPDATE_PHOTO,
+  UPDATE_LOCATION,
 } from "../actions/actionTypes";
 import { combineReducers } from "redux";
 
