@@ -42,6 +42,8 @@ const post = (state = {}, action) => {
       return { ...state, feed: action.payload };
     case UPDATE_PHOTO:
       return { ...state, photo: action.payload };
+    case UPDATE_LOCATION:
+      return { ...state, location: action.payload };
     default:
       return state;
   }
