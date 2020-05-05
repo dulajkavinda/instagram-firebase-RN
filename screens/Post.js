@@ -49,7 +49,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ updateDecription, uploadPost }, dispatch);
+  return bindActionCreators(
+    { updateDecription, uploadPost, updateLocation },
+    dispatch
+  );
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);
