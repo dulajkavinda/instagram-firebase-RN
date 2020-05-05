@@ -32,6 +32,7 @@ export const uploadPost = () => {
         uid: user.uid,
         postDescription: post.description,
         postPhoto: post.photo,
+        postLocation: post.location,
         username: user.email,
       };
 
