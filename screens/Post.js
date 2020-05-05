@@ -68,12 +68,20 @@ class Post extends React.Component {
           onChangeText={(input) => this.props.updateDecription(input)}
           placeholder="Description"
         />
-        <TouchableOpacity style={styles.border} onPress={() => {}}>
-          <Text style={styles.gray}>Hello</Text>
+        <TouchableOpacity
+          style={styles.border}
+          onPress={() => this.setState({ showModal: true })}
+        >
+          <Text style={styles.gray}>
+            {this.props.post.location
+              ? this.props.post.location
+              : "Add a Location"}
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => this.props.uploadPost()}
+          style={styles.button}
+          onPress={this.post}
         >
           <Text>Post</Text>
         </TouchableOpacity>
