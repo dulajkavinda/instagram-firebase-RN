@@ -10,7 +10,6 @@ import firebase from "firebase";
 import { SIGNIN } from "../redux/actions/actionTypes";
 
 export default () => {
-  let isLoading = false;
   const isUserLogged = useSelector((state) => state.user.uid);
   const dispatch = useDispatch();
 
