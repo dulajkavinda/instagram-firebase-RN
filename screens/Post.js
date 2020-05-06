@@ -47,11 +47,15 @@ class Post extends React.Component {
     this.props.updateLocation(place);
   };
 
+  // ලග තියන locations google places api එකෙන්
+  // ගන්න method එක.
   getLocations = async () => {
     this.setState({ showModal: true });
+    // location services use කරන්න permissions
     const permission = await Location.requestPermissionsAsync();
     if (permission.status === "granted") {
       console.log(permission);
+      // දැන් ඉන්න තැන posiotion එ​ක
       const location = await Location.getCurrentPositionAsync();
       console.log(location);
       const url = `${GOOGLE_API}?location=${location.coords.latitude},${location.coords.longitude}&rankby=distance&key=AIzaSyCH8A2ZSYykS30D2c1BKfCSIZ_ERNUAPnM`;
@@ -59,7 +63,6 @@ class Post extends React.Component {
       const data = await response.json();
       console.log(data.results);
       this.setState({ locations: data.results });
-      console.log(data);
     }
   };
 
