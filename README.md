@@ -24,7 +24,7 @@ In this project cover all the steps from creating an app in the command line all
 ```
 yarn install
 ```
-* run expo
+* run expo / yarn start
 ```
 expo start
 ```
