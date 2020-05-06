@@ -17,6 +17,10 @@ import {
   updateLocation,
 } from "../redux/actions/post";
 
+import * as Location from "expo-location";
+const GOOGLE_API =
+  "https://maps.googleapis.com/maps/api/place/nearbysearch/json";
+
 import styles from "../styles";
 
 class Post extends React.Component {
@@ -32,6 +36,22 @@ class Post extends React.Component {
   setLocation = (location) => {
     this.setState({ showModal: false });
     this.props.updateLocation(location);
+  };
+
+  getLocations = async () => {
+    this.setState({ showModal: true });
+    const permission = await Location.requestPermissionsAsync();
+    if (permission.status === "granted") {
+      console.log(permission);
+      const location = await Location.getCurrentPositionAsync();
+      console.log(location);
+      const url = `${GOOGLE_API}?location=${location.coords.latitude},${location.coords.longitude}&rankby=distance&key=AIzaSyCH8A2ZSYykS30D2c1BKfCSIZ_ERNUAPnM`;
+      const response = await fetch(url);
+      const data = await response.json();
+      console.log(data.results);
+      this.setState({ locations: data.results });
+      console.log(data);
+    }
   };
 
   modal = () => {
@@ -82,7 +102,7 @@ class Post extends React.Component {
         <TouchableOpacity
           style={styles.button}
           style={styles.button}
-          onPress={this.post}
+          onPress={this.getLocations}
         >
           <Text>Post</Text>
         </TouchableOpacity>
