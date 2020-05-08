@@ -7,6 +7,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import TabNavigator from "../navigations/TabNavigator";
 import CameraUpload from "../screens/CameraUpload";
+import Map from "../screens/Map";
 
 const StackTab = createStackNavigator();
 
@@ -55,6 +56,16 @@ const StackTabScreen = () => (
       options={{
         headerTitleAlign: "center",
         headerShown: false,
+      }}
+    />
+    <StackTab.Screen
+      name="Map"
+      component={Map}
+      options={{
+        headerTitle: "Map View",
+        headerTitleAlign: "center",
+        headerShown: true,
+        headerBackTitle: "Back",
       }}
     />
   </StackTab.Navigator>
