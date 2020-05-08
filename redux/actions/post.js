@@ -136,3 +136,18 @@ export const likePost = (post) => {
     }
   };
 };
+
+export const dislikePost = (post) => {
+  return async (dispatch, getState) => {
+    try {
+      const { uid } = getState().user;
+
+      var likes = db.collection("posts").doc(post.id);
+      likes.update({
+        likes: firebase.firestore.FieldValue.arrayRemove(uid),
+      });
+    } catch (error) {
+      alert(error);
+    }
+  };
+};
