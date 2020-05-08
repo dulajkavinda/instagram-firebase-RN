@@ -34,6 +34,7 @@ export const uploadPost = () => {
         postPhoto: post.photo,
         postLocation: post.location,
         username: user.email,
+        likes: [],
       };
 
       let ref = await db.collection("posts").doc();
