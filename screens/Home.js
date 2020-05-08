@@ -60,8 +60,8 @@ class Home extends React.Component {
                   style={{ margin: 5 }}
                   name={
                     item.likes.includes(this.props.user.uid)
-                      ? "ios-heart-empty"
-                      : "ios-heart"
+                      ? "ios-heart"
+                      : "ios-heart-empty"
                   }
                   size={25}
                 />
