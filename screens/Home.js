@@ -19,6 +19,15 @@ class Home extends React.Component {
     this.props.navigation.navigate("Map", { location: item.postLocation });
   };
 
+  postLike = (post) => {
+    const { uid } = this.props.user;
+    if (post.likes.includes(uid)) {
+      console.log("like");
+    } else {
+      console.log("dislike");
+    }
+  };
+
   render() {
     if (this.props.posts === null) return null;
     return (
@@ -40,11 +49,12 @@ class Home extends React.Component {
                 </View>
                 <Ionicons style={{ margin: 5 }} name="ios-flag" size={25} />
               </View>
-              <Image
-                style={styles.postPhoto}
-                source={{ uri: item.postPhoto }}
-              />
-
+              <TouchableOpacity onPress={() => this.postLike(item)}>
+                <Image
+                  style={styles.postPhoto}
+                  source={{ uri: item.postPhoto }}
+                />
+              </TouchableOpacity>
               <View style={styles.row}>
                 <Ionicons
                   style={{ margin: 5 }}
