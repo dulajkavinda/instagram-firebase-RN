@@ -1,7 +1,6 @@
 import * as React from "react";
 
 // react-navigations වලට ඕනේ වෙන බම්​බු
-import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 // රෙද්දෙ icons ටි​ක
