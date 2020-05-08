@@ -3,7 +3,7 @@ import { Text, View, Image, FlatList, TouchableOpacity } from "react-native";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getPosts } from "../redux/actions/post";
+import { getPosts, likePost, dislikePost } from "../redux/actions/post";
 
 import styles from "../styles.js";
 
@@ -17,6 +17,15 @@ class Home extends React.Component {
   navigateMap = (item) => {
     console.log(this.props.navigation);
     this.props.navigation.navigate("Map", { location: item.postLocation });
+  };
+
+  postLike = (post) => {
+    const { uid } = this.props.user;
+    if (post.likes.includes(uid)) {
+      this.props.dislikePost(post);
+    } else {
+      this.props.likePost(post);
+    }
   };
 
   render() {
@@ -40,11 +49,12 @@ class Home extends React.Component {
                 </View>
                 <Ionicons style={{ margin: 5 }} name="ios-flag" size={25} />
               </View>
-              <Image
-                style={styles.postPhoto}
-                source={{ uri: item.postPhoto }}
-              />
-
+              <TouchableOpacity onPress={() => this.postLike(item)}>
+                <Image
+                  style={styles.postPhoto}
+                  source={{ uri: item.postPhoto }}
+                />
+              </TouchableOpacity>
               <View style={styles.row}>
                 <Ionicons
                   style={{ margin: 5 }}
@@ -75,7 +85,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getPosts }, dispatch);
+  return bindActionCreators({ getPosts, likePost, dislikePost }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
