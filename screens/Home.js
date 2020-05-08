@@ -3,7 +3,7 @@ import { Text, View, Image, FlatList, TouchableOpacity } from "react-native";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getPosts, likePost } from "../redux/actions/post";
+import { getPosts, likePost, dislikePost } from "../redux/actions/post";
 
 import styles from "../styles.js";
 
@@ -85,7 +85,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getPosts, likePost }, dispatch);
+  return bindActionCreators({ getPosts, likePost, dislikePost }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
