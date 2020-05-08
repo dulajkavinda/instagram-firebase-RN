@@ -62,6 +62,7 @@ const StackTabScreen = () => (
       name="Map"
       component={Map}
       options={{
+        headerTitle: "Map View",
         headerTitleAlign: "center",
         headerShown: true,
         headerBackTitle: "Back",

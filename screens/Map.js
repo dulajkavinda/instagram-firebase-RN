@@ -10,8 +10,8 @@ export default ({ route }) => {
       initialRegion={{
         latitude: location.coords.lat,
         longitude: location.coords.lng,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
+        latitudeDelta: 0.00922,
+        longitudeDelta: 0.00421,
       }}
     >
       <MapView.Marker
