@@ -34,6 +34,7 @@ export const uploadPost = () => {
         postPhoto: post.photo,
         postLocation: post.location,
         username: user.email,
+        likes: [],
       };
 
       let ref = await db.collection("posts").doc();
@@ -120,4 +121,36 @@ export const uploadImage = (image) => {
 // loaction එක update කරන්​නේ
 export const updateLocation = (location) => {
   return { type: UPDATE_LOCATION, payload: location };
+};
+
+export const likePost = (post) => {
+  return async (dispatch, getState) => {
+    try {
+      const { uid } = getState().user;
+
+      var likes = db.collection("posts").doc(post.id);
+      likes.update({
+        likes: firebase.firestore.FieldValue.arrayUnion(uid),
+      });
+      dispatch(getPosts());
+    } catch (error) {
+      alert(error);
+    }
+  };
+};
+
+export const dislikePost = (post) => {
+  return async (dispatch, getState) => {
+    try {
+      const { uid } = getState().user;
+
+      var likes = db.collection("posts").doc(post.id);
+      likes.update({
+        likes: firebase.firestore.FieldValue.arrayRemove(uid),
+      });
+      dispatch(getPosts());
+    } catch (error) {
+      alert(error);
+    }
+  };
 };
