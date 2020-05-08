@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Image, FlatList } from "react-native";
+import { Text, View, Image, FlatList, TouchableOpacity } from "react-native";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -14,6 +14,11 @@ class Home extends React.Component {
     this.props.getPosts();
   }
 
+  navigateMap = (item) => {
+    console.log(this.props.navigation);
+    this.props.navigation.navigate("Map", { location: item.postLocation });
+  };
+
   render() {
     if (this.props.posts === null) return null;
     return (
@@ -27,6 +32,11 @@ class Home extends React.Component {
                 <View style={[styles.row, styles.center]}>
                   {/* <Image style={styles.roundImage} source={{uri: item.photo}}/> */}
                   <Text>{item.email}</Text>
+                  <TouchableOpacity onPress={() => this.navigateMap(item)}>
+                    <Text>
+                      {item.postLocation ? item.postLocation.name : null}
+                    </Text>
+                  </TouchableOpacity>
                 </View>
                 <Ionicons style={{ margin: 5 }} name="ios-flag" size={25} />
               </View>
