@@ -63,7 +63,8 @@ const StackTabScreen = () => (
       component={Map}
       options={{
         headerTitleAlign: "center",
-        headerShown: false,
+        headerShown: true,
+        headerBackTitle: "Back",
       }}
     />
   </StackTab.Navigator>
