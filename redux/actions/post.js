@@ -121,3 +121,18 @@ export const uploadImage = (image) => {
 export const updateLocation = (location) => {
   return { type: UPDATE_LOCATION, payload: location };
 };
+
+export const likePost = (post) => {
+  return async (dispatch, getState) => {
+    try {
+      const { uid } = getState().user;
+
+      var likes = db.collection("posts").doc(post.id);
+      likes.update({
+        regions: firebase.firestore.FieldValue.arrayUnion(uid),
+      });
+    } catch (error) {
+      alert(error);
+    }
+  };
+};
