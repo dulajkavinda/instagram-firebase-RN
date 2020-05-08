@@ -58,7 +58,11 @@ class Home extends React.Component {
               <View style={styles.row}>
                 <Ionicons
                   style={{ margin: 5 }}
-                  name="ios-heart-empty"
+                  name={
+                    item.likes.includes(this.props.user.uid)
+                      ? "ios-heart-empty"
+                      : "ios-heart"
+                  }
                   size={25}
                 />
                 <Ionicons
