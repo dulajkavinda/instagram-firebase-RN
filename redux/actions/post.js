@@ -132,6 +132,7 @@ export const likePost = (post) => {
       likes.update({
         likes: firebase.firestore.FieldValue.arrayUnion(uid),
       });
+      dispatch(getPosts());
     } catch (error) {
       alert(error);
     }
@@ -147,6 +148,7 @@ export const dislikePost = (post) => {
       likes.update({
         likes: firebase.firestore.FieldValue.arrayRemove(uid),
       });
+      dispatch(getPosts());
     } catch (error) {
       alert(error);
     }
