@@ -3,7 +3,7 @@ import { Text, View, Image, FlatList, TouchableOpacity } from "react-native";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getPosts } from "../redux/actions/post";
+import { getPosts, likePost } from "../redux/actions/post";
 
 import styles from "../styles.js";
 
@@ -22,9 +22,9 @@ class Home extends React.Component {
   postLike = (post) => {
     const { uid } = this.props.user;
     if (post.likes.includes(uid)) {
-      console.log("like");
-    } else {
       console.log("dislike");
+    } else {
+      this.props.likePost(post);
     }
   };
 
@@ -85,7 +85,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getPosts }, dispatch);
+  return bindActionCreators({ getPosts, likePost }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

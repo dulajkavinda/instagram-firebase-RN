@@ -129,7 +129,7 @@ export const likePost = (post) => {
 
       var likes = db.collection("posts").doc(post.id);
       likes.update({
-        regions: firebase.firestore.FieldValue.arrayUnion(uid),
+        likes: firebase.firestore.FieldValue.arrayUnion(uid),
       });
     } catch (error) {
       alert(error);
