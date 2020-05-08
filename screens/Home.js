@@ -22,7 +22,7 @@ class Home extends React.Component {
   postLike = (post) => {
     const { uid } = this.props.user;
     if (post.likes.includes(uid)) {
-      console.log("dislike");
+      this.props.dislikePost(post);
     } else {
       this.props.likePost(post);
     }
